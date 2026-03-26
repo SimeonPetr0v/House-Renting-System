@@ -11,7 +11,7 @@ using HouseRentingSystem.Data.Data.Entities.Configuration;
 
 namespace HouseRentingSystem.Data.Data
 {
-    public class HouseRentingDbContext : IdentityDbContext<IdentityUser>
+    public class HouseRentingDbContext : IdentityDbContext<ApplicationUser>
     {
         public HouseRentingDbContext(DbContextOptions<HouseRentingDbContext> options) : base(options)
         {
@@ -22,7 +22,7 @@ namespace HouseRentingSystem.Data.Data
 
         public DbSet<Agent> Agents { get; init; } = null!;
 
-        public override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new HouseConfiguration());

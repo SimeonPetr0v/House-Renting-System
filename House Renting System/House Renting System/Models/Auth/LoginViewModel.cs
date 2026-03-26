@@ -1,0 +1,15 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace House_Renting_System.Models.Auth
+{
+    public class LoginViewModel
+    {
+        [Required]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "Invalid Username" )]
+        public string Username {  get; set; }
+        [Required]
+        [StringLength(30, MinimumLength = 6, ErrorMessage = "Invalid Password")]
+        public string Password { get; set; }
+        public bool RememberMe { get; set; }
+    }
+}

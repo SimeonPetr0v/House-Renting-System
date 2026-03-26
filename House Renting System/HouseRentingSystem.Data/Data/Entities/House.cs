@@ -54,6 +54,6 @@ namespace HouseRentingSystem.Data.Data.Entities
 
         public string? RenterId {  get; set; }
         
-        public IdentityUser? Renter { get; set; }
+        public ApplicationUser? Renter { get; set; }
     }
 }

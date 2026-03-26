@@ -13,7 +13,7 @@ namespace HouseRentingSystem.Data.Data.Entities.Configuration
         public void Configure(EntityTypeBuilder<House> builder)
         {
             builder.HasOne(h=> h.Category).WithMany(c => c.Houses).HasForeignKey(h=>h.CategoryId).OnDelete(DeleteBehavior.Restrict);
-            builder.HasData(SeedHouses());
+            //builder.HasData(SeedHouses());
         }
 
         private IEnumerable<House> SeedHouses()
@@ -23,11 +23,11 @@ namespace HouseRentingSystem.Data.Data.Entities.Configuration
                new House
                {
                    Id = 1,
-                   Title = "Jeremiah",
-                   Address = "Nowhere",
-                   Description = "Nothing",
+                   Title = "Rila House",
+                   Address = "Rila Mountain",
+                   Description = "Big house in the mountain",
                    ImageUrl = @"https://bghike.com/en/images/huts_pic/rila_lakes_main.jpg",
-                   PricePerMonth = 109.00M,
+                   PricePerMonth = 1000.00M,
                    CategoryId = 2,
                    AgentId = 1,
 
@@ -35,11 +35,11 @@ namespace HouseRentingSystem.Data.Data.Entities.Configuration
                new House
                {
                    Id = 1,
-                   Title = "Jeremiah",
-                   Address = "Nowhere",
-                   Description = "Nothing",
+                   Title = "Modern House",
+                   Address = "Miami",
+                   Description = "Large modern house",
                    ImageUrl = @"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvcje9el9YUxSqN4VSt3llpb6su9ghN-_ZbA&s",
-                   PricePerMonth = 109.00M,
+                   PricePerMonth = 1200.00M,
                    CategoryId = 1,
                    AgentId = 1,
 

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace HouseRentingSystem.Data.Data.Entities.Configuration
 {
-    internal class AgentConfiguration : IEntityTypeConfiguration<Agent>
+    public class AgentConfiguration : IEntityTypeConfiguration<Agent>
     {
         public void Configure(EntityTypeBuilder<Agent> builder)
         {
-            builder.HasData(SeedAgents());
+            //builder.HasData(SeedAgents());
         }
 
         private IEnumerable<Agent> SeedAgents()

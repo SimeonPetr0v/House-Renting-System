@@ -12,7 +12,7 @@ namespace HouseRentingSystem.Data.Data.Entities.Configuration
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasData(SeedCategories);   
+            builder.HasData(SeedCategories());   
         }
         private IEnumerable<Category> SeedCategories()
         {
