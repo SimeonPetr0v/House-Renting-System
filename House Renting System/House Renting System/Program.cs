@@ -1,3 +1,4 @@
+using House_Renting_System.Middlewares;
 using HouseRentingSystem.Data.Data;
 using HouseRentingSystem.Data.Data.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -52,7 +53,16 @@ namespace House_Renting_System
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.Use(async (context, next) =>
+            {
+                var path = context.Request.Path;
+                Console.WriteLine(path);
+                await next();
 
+                var statusCode = context.Response.StatusCode;
+                Console.WriteLine(statusCode);
+            });
+            app.UseCustom();
             app.UseAuthentication();
             app.UseAuthorization();
 
