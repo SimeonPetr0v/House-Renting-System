@@ -13,25 +13,27 @@ namespace HouseRentingSystem.Data.Data
 {
     public class HouseRentingDbContext : IdentityDbContext<ApplicationUser>
     {
-        public HouseRentingDbContext(DbContextOptions<HouseRentingDbContext> options) : base(options)
+
+        public HouseRentingDbContext
+            (DbContextOptions<HouseRentingDbContext> options)
+            : base(options)
         {
         }
+
         public DbSet<House> Houses { get; init; } = null!;
-
         public DbSet<Category> Categories { get; init; } = null!;
-
-        public DbSet<Agent> Agents { get; init; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new HouseConfiguration());
-            builder.ApplyConfiguration(new AgentConfiguration());
+
             base.OnModelCreating(builder);
         }
-    }
-    }
 
+
+    }
+}
 
 
 

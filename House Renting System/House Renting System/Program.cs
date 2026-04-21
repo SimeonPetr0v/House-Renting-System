@@ -13,21 +13,34 @@ namespace House_Renting_System
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
             builder.Services.AddDbContext<HouseRentingDbContext>(opt => opt.UseSqlServer(connectionString));
 
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
+                opt =>
+                {
+                    opt.User.RequireUniqueEmail = true;
+                    opt.Password.RequireNonAlphanumeric = false;
+                    opt.Password.RequiredLength = 6;
+                    opt.Password.RequireLowercase = false;
+                    opt.Password.RequireUppercase = false;
+                    opt.SignIn.RequireConfirmedEmail = false;
+                }
+            )
                 .AddEntityFrameworkStores<HouseRentingDbContext>()
                 .AddDefaultTokenProviders();
+
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = "/User/Login";
+                options.LogoutPath = "/Auth/Login";
                 options.AccessDeniedPath = "/User/AccessDenied";
             });
 
-            var app = builder.Build();
+            builder.Services.AddControllersWithViews();
 
-          
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -38,12 +51,12 @@ namespace House_Renting_System
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
             app.UseRouting();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseStaticFiles();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
