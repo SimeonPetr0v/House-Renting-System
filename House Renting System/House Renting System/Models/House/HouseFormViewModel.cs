@@ -5,6 +5,7 @@ namespace House_Renting_System.Models.House
 {
     public class HouseFormViewModel
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Title is required")]
         [StringLength(100, MinimumLength = 10, ErrorMessage = "Title must be between 10 and 100 characters")]
         public string Title { get; set; } = null!;
@@ -29,11 +30,5 @@ namespace House_Renting_System.Models.House
         [Required(ErrorMessage = "Category is required")]
         public List<CategoryViewModel>? Categories { get; set; }
         public int SelectedCategoryId { get; set; }
-
-
-
-        //[Required(ErrorMessage = "Agent is required")]
-        //public int AgentId { get; set; }
-        //public Agent Agent { get; set; }
     }
 }

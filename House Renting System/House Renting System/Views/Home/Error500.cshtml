@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Server Error";
+}
+
+<div class="error-page">
+    <div class="error-card">
+        <div class="icon">⚠️</div>
+        <div class="code">500</div>
+
+        <h1>Internal Server Error</h1>
+        <p>
+            Something went wrong while processing your request.
+            Please try again later.
+        </p>
+
+        <div class="actions">
+            <a asp-controller="Home" asp-action="Index" class="btn-main">Home</a>
+            <button onclick="history.back()" class="btn-alt">Back</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1f2937, #111827);
+    }
+
+    .error-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .error-card {
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+        padding: 50px 30px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.15);
+        color: white;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .icon {
+        font-size: 60px;
+        margin-bottom: 10px;
+    }
+
+    .code {
+        font-size: 90px;
+        font-weight: 900;
+        margin: 10px 0;
+        color: #f87171;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 34px;
+    }
+
+    p {
+        margin: 15px 0 30px;
+        font-size: 18px;
+        color: #e5e7eb;
+        line-height: 1.6;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn-main,
+    .btn-alt {
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .btn-main {
+        background: #ef4444;
+        color: white;
+    }
+
+    .btn-alt {
+        background: rgba(255,255,255,0.1);
+        color: white;
+    }
+
+        .btn-main:hover,
+        .btn-alt:hover {
+            transform: translateY(-2px);
+        }
+</style>

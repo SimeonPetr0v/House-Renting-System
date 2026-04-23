@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Error";
+
+    var statusCode = ViewBag.StatusCode as int? ?? 404;
+
+    var title = statusCode == 401
+        ? "Unauthorized Access"
+        : "Page Not Found";
+
+    var message = statusCode == 401
+        ? "You don’t have permission to access this page."
+        : "The page you are looking for does not exist or was moved.";
+
+    var icon = statusCode == 401 ? "🔒" : "🧭";
+
+    var backgroundImage = statusCode == 401
+        ? "/images/error-401.jpg"
+        : "/images/error.png";
+}
+
+<div class="error-page">
+    <div class="error-card">
+        <div class="icon">@icon</div>
+        <div class="code">@statusCode</div>
+
+        <h1>@title</h1>
+        <p>@message</p>
+
+        <div class="actions">
+            <a asp-controller="Home" asp-action="Index" class="btn-main">
+                Home
+            </a>
+
+            <button onclick="history.back()" class="btn-alt">
+                Back
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: url('@backgroundImage') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+    .error-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .error-card {
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+        padding: 50px 30px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.15);
+        color: white;
+    }
+
+    .icon {
+        font-size: 60px;
+    }
+
+    .code {
+        font-size: 90px;
+        font-weight: 900;
+        margin: 10px 0;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 34px;
+    }
+
+    p {
+        margin: 15px 0 30px;
+        font-size: 18px;
+        color: #e5e7eb;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .btn-main,
+    .btn-alt {
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-main {
+        background: #3b82f6;
+        color: white;
+    }
+
+    .btn-alt {
+        background: rgba(255,255,255,0.1);
+        color: white;
+    }
+
+        .btn-main:hover,
+        .btn-alt:hover {
+            transform: translateY(-2px);
+        }
+</style>

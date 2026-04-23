@@ -1,21 +1,30 @@
-using House_Renting_System.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace House_Renting_System.Controllers
 {
-        public class HomeController : Controller
+    public class HomeController : Controller
+    {
+        public IActionResult Index()
         {
+            return View();
+        }
+ 
+        public IActionResult Error()
+        {
+            return View("Error500");
+        }
 
-            public IActionResult Index()
+        public IActionResult StatusCodeHandler(int statusCode)
+        {
+            ViewBag.StatusCode = statusCode;
+
+            if (statusCode == 401 || statusCode == 404)
             {
-                return View();
+                return View("ErrorStatus");
             }
 
-            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-            public IActionResult Error()
-            {
-                return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-            }
+            
+            return View("ErrorStatus");
         }
     }
+}
