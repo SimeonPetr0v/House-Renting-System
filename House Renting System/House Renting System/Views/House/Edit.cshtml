@@ -1,8 +1,7 @@
-﻿@using House_Renting_System.Models.House
-@model HouseFormViewModel
+﻿@model HouseFormViewModel
 
 @{
-    ViewData["Title"] = "Register New House";
+    ViewData["Title"] = "Edit House";
 }
 
 <div class="container mt-4">
@@ -10,17 +9,16 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h4>Register New House</h4>
+                    <h4>Edit House</h4>
                 </div>
 
                 <div class="card-body">
-
-
-                    <form asp-controller="House" asp-action="CreateHouse" method="post">
+                    <form asp-controller="House" asp-action="Edit" method="post">
                         @Html.AntiForgeryToken()
 
-                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        <input type="hidden" asp-for="Id" />
 
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
                         <div class="mb-3">
                             <label asp-for="Title" class="form-label"></label>
@@ -28,13 +26,11 @@
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
 
-
                         <div class="mb-3">
                             <label asp-for="Address" class="form-label"></label>
                             <input asp-for="Address" class="form-control" />
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
-
 
                         <div class="mb-3">
                             <label asp-for="Description" class="form-label"></label>
@@ -42,20 +38,17 @@
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
 
-
                         <div class="mb-3">
                             <label asp-for="ImageUrl" class="form-label"></label>
                             <input asp-for="ImageUrl" class="form-control" />
                             <span asp-validation-for="ImageUrl" class="text-danger"></span>
                         </div>
 
-
                         <div class="mb-3">
                             <label asp-for="PricePerMonth" class="form-label"></label>
                             <input asp-for="PricePerMonth" class="form-control" />
                             <span asp-validation-for="PricePerMonth" class="text-danger"></span>
                         </div>
-
 
                         <div class="mb-3">
                             <label asp-for="SelectedCategoryId" class="form-label">Category</label>
@@ -68,9 +61,15 @@
                             <span asp-validation-for="SelectedCategoryId" class="text-danger"></span>
                         </div>
 
-
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-primary">Create House</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+
+                            <a asp-controller="House"
+                               asp-action="Delete"
+                               asp-route-id="@Model.Id"
+                               class="btn btn-danger">
+                                Delete
+                            </a>
 
                             <a asp-controller="House"
                                asp-action="AllHouses"
@@ -79,7 +78,6 @@
                             </a>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

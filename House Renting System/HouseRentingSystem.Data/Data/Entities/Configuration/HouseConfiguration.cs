@@ -23,7 +23,7 @@ namespace HouseRentingSystem.Data.Data.Entities.Configuration
                 .WithMany(a => a.Houses)
                 .HasForeignKey(h => h.AgentId)
                 .OnDelete(DeleteBehavior.Restrict);
-            builder.HasData(SeedHouses());
+            //builder.HasData(SeedHouses());
 
 
         }

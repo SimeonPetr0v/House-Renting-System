@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HouseRentingSystem.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -82,26 +82,6 @@ namespace HouseRentingSystem.Data.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Agents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Agents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Agents_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -203,18 +183,19 @@ namespace HouseRentingSystem.Data.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PricePerMonth = table.Column<decimal>(type: "decimal(12,3)", maxLength: 2000, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    AgentId = table.Column<int>(type: "int", nullable: false),
-                    RenterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    AgentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RenterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Houses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Houses_Agents_AgentId",
+                        name: "FK_Houses_AspNetUsers_AgentId",
                         column: x => x.AgentId,
-                        principalTable: "Agents",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Houses_AspNetUsers_RenterId",
                         column: x => x.RenterId,
@@ -233,14 +214,12 @@ namespace HouseRentingSystem.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Urban" },
-                    { 2, "Suburban" }
+                    { 1, "Cottage" },
+                    { 2, "Single-Family huose" },
+                    { 3, "Duplex" },
+                    { 4, "One Bedroom" },
+                    { 5, "Two Bedroom" }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agents_UserId",
-                table: "Agents",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -322,13 +301,10 @@ namespace HouseRentingSystem.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Agents");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }

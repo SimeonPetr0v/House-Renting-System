@@ -35,7 +35,7 @@ namespace House_Renting_System
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.LogoutPath = "/Auth/Login";
+                options.LoginPath = "/Auth/Login";
                 options.AccessDeniedPath = "/User/AccessDenied";
             });
 
