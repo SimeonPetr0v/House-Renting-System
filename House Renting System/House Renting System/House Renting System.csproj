@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HouseRentingSystem.Data\HouseRentingSystem.Data.csproj" />
+    <ProjectReference Include="..\House_Renting_System.Services\House_Renting_System.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
 using House_Renting_System.Middlewares;
+using House_Renting_System.Services.Contracts;
+using House_Renting_System.Services.Implementations;
 using HouseRentingSystem.Data.Data;
 using HouseRentingSystem.Data.Data.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +42,7 @@ namespace House_Renting_System
             });
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IHouseService, HouseService>();
 
             var app = builder.Build();
 

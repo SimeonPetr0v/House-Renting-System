@@ -11,8 +11,10 @@ using HouseRentingSystem.Data.Data.Entities.Configuration;
 
 namespace HouseRentingSystem.Data.Data
 {
+    
     public class HouseRentingDbContext : IdentityDbContext<ApplicationUser>
     {
+
 
         public HouseRentingDbContext
             (DbContextOptions<HouseRentingDbContext> options)

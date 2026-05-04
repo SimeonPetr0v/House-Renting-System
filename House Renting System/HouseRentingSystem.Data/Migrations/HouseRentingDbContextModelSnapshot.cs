@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HouseRentingSystem.Data.Migrations
 {
+   
+    
     [DbContext(typeof(HouseRentingDbContext))]
     partial class HouseRentingDbContextModelSnapshot : ModelSnapshot
     {

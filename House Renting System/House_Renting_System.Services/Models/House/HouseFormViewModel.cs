@@ -1,7 +1,7 @@
 ﻿using House_Renting_System.Models.House.Helpers;
 using System.ComponentModel.DataAnnotations;
 
-namespace House_Renting_System.Models.House
+namespace House_Renting_System.Services.Models
 {
     public class HouseFormViewModel
     {
